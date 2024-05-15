@@ -3,16 +3,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Form() {
-  const [subject, setSubject] = useState("");
   const [formvalues, setFormValues] = useState({});
-  const [subjectlist, setSubjectList] = useState([]);
   const history = useNavigate();
-  const handleSubject = (e) => {
-    e.preventDefault();
-
-    setSubjectList([...subjectlist, subject]);
-    setSubject("");
-  };
 
   const handleOnchange = (e) => {
     const { name, value } = e.target;
@@ -25,7 +17,6 @@ function Form() {
     axios
       .post("http://localhost:3005/dummy/post", {
         formvalues: formvalues,
-        subjectlist: subjectlist,
       })
       .then((res) => {
         console.log(res);
@@ -133,28 +124,10 @@ function Form() {
             <input
               className=" border "
               type="text"
-              onChange={(e) => setSubject(e.target.value)}
+              onChange={(e) => handleOnchange(e)}
               name="subject"
-              value={subject}
               id="subject"
             />
-            <button
-              className=" ml-4  bg-red-600 px-3 py-2 hover:bg-teal-500 rounded-md"
-              onClick={(e) => handleSubject(e)}
-            >
-              Add Subject
-            </button>
-            <div>
-              {subjectlist?.map((item, index) => {
-                return (
-                  <div key={index}>
-                    <div className=" bg-slate-800 text-white inline px-2 rounded-md text-[12px]">
-                      {item}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
           </div>
           <div className=" flex justify-center mt-4">
             <button className=" bg-green-600 px-3 py-2 hover:bg-teal-500 rounded-md">
