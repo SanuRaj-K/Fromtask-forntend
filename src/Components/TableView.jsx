@@ -5,7 +5,7 @@ function TableView() {
   const [data, setData] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:3005/dummy/get")
+      .get("https://render.com/docs/web-services#port-binding/api/get")
       .then((res) => {
         console.log(res.data);
         setData(res.data);
