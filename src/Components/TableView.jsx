@@ -5,7 +5,7 @@ function TableView() {
   const [data, setData] = useState([]);
   useEffect(() => {
     axios
-      .get("https://render.com/docs/web-services#port-binding/api/get")
+      .get("https://formtask-backend.onrender.com/api/get")
       .then((res) => {
         console.log(res.data);
         setData(res.data);
